@@ -18,6 +18,7 @@ public:
     std::pair<std::queue<int>*, std::queue<int>*> setupPipeline();
     void startPipeline();
     void stopPipeline();
+    bool isPipelineFlushed();
 };
 
 #endif

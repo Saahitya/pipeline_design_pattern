@@ -10,7 +10,7 @@ void BaseFunctor::operator() ()
     bool isEleMinus1 = false;
     while(!stopFunctions)
     {
-        // std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        // std::this_thread::sleep_for(std::chrono::milliseconds(10));
         while(in_->size() == 0);
         std::lock_guard<std::mutex> guard(queue_mutex);
         isEleMinus1 = (in_->front() == -1) ? true : false;

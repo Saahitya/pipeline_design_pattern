@@ -1,6 +1,8 @@
 #include "pipeline.h"
 #include <iostream>
 #include <algorithm>
+#include <functional>
+
 
 Pipeline::Pipeline()
 {
@@ -42,5 +44,11 @@ void Pipeline::startPipeline()
 
 void Pipeline::stopPipeline()
 {
+    while(!(this->isPipelineFlushed()));
     BaseFunctor::stopFunctions = true;
+}
+
+bool Pipeline::isPipelineFlushed()
+{
+    return std::all_of(begin(queues_), end(queues_)-1, [](auto q){return !q.size();});
 }

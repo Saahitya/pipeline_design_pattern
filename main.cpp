@@ -23,7 +23,8 @@ int main()
   }
   
   p->startPipeline();
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  auto done = p->isPipelineFlushed();
+  // std::this_thread::sleep_for(std::chrono::milliseconds(10200));
   p->stopPipeline();
 
 
@@ -32,5 +33,5 @@ int main()
     o->pop();
   }
   std::cout << std::endl;
-
+  std::cout << done << std::endl;
 }
