@@ -1,20 +1,20 @@
 #ifndef PIPELINE_H
 #define PIPELINE_H
 
-#include <vector>
+#include "base_functor.h"
+#include <chrono>
 #include <queue>
 #include <thread>
-#include <chrono>
-#include "base_functor.h"
+#include <vector>
 
-class Pipeline
-{
+class Pipeline {
 private:
     std::vector<BaseFunctor*> stages_;
     std::vector<std::queue<int>> queues_;
+
 public:
     Pipeline();
-    void addStage(BaseFunctor *bf);
+    void addStage(BaseFunctor* bf);
     std::pair<std::queue<int>*, std::queue<int>*> setupPipeline();
     void startPipeline();
     void stopPipeline();
