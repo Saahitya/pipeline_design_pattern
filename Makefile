@@ -18,3 +18,6 @@ main.o: main.cpp
 
 base_functor.o: base_functor.cpp
 	$(CXX) -c base_functor.cpp $(CXXFLAGS)
+
+run: pipeline
+	./pipeline
