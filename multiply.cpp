@@ -1,10 +1,5 @@
 #include "multiply.h"
 
-Multiply::Multiply(std::queue<int>* in, std::queue<int>* out)
-{
-    in_ = in;
-    out_ = out;
-}
 
 Multiply::Multiply()
 {

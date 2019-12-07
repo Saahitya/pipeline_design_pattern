@@ -6,7 +6,6 @@
 
 class Add : public Stage {
 public:
-    Add(std::queue<int>* in, std::queue<int>* out);
     Add();
     virtual int stage_operation(int);
 };

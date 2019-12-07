@@ -1,10 +1,5 @@
 #include "add.h"
 
-Add::Add(std::queue<int>* in, std::queue<int>* out)
-{
-    in_ = in;
-    out_ = out;
-}
 
 Add::Add()
 {
