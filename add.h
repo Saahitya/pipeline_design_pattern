@@ -1,10 +1,10 @@
 #ifndef ADD_H
 #define ADD_H
 
-#include "base_functor.h"
+#include "stage.h"
 #include <queue>
 
-class Add : public BaseFunctor {
+class Add : public Stage {
 public:
     Add(std::queue<int>* in, std::queue<int>* out);
     Add();

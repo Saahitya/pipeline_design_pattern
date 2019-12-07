@@ -7,7 +7,7 @@ Pipeline::Pipeline()
 {
 }
 
-void Pipeline::addStage(BaseFunctor* bf)
+void Pipeline::addStage(Stage* bf)
 {
     stages_.push_back(bf);
 }
@@ -16,7 +16,7 @@ std::pair<std::queue<int>*, std::queue<int>*> Pipeline::setupPipeline()
 {
     queues_.resize(stages_.size() + 1);
     int index = 0;
-    BaseFunctor::stopFunctions = false;
+    Stage::stopFunctions = false;
     std::cout << std::boolalpha;
     for (auto it = begin(stages_); it != end(stages_); ++it) {
         (*it)->setInQueue(queues_[index]);
@@ -30,7 +30,7 @@ std::pair<std::queue<int>*, std::queue<int>*> Pipeline::setupPipeline()
 void Pipeline::startPipeline()
 {
     for (auto it = begin(stages_); it != end(stages_); ++it) {
-        std::thread th([&](BaseFunctor* bf) { bf->operator()(); }, *it);
+        std::thread th([&](Stage* bf) { bf->operator()(); }, *it);
         // std::thread th(**it);
         th.detach();
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
@@ -43,7 +43,7 @@ void Pipeline::stopPipeline()
 {
     while (!(this->isPipelineFlushed()))
         ;
-    BaseFunctor::stopFunctions = true;
+    Stage::stopFunctions = true;
 }
 
 bool Pipeline::isPipelineFlushed()

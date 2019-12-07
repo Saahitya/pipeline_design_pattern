@@ -1,11 +1,11 @@
-#ifndef BASE_FUNCTOR_H
-#define BASE_FUNCTOR_H
+#ifndef STAGE_H
+#define STAGE_H
 
 #include <iostream>
 #include <mutex>
 #include <queue>
 
-class BaseFunctor {
+class Stage {
 private:
     std::mutex queue_mutex;
     static bool stopFunctions;

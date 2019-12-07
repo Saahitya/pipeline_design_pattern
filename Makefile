@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++14 -lpthread
 
-pipeline: main.o multiply.o add.o pipeline.o base_functor.o
-	$(CXX) -o pipeline main.o pipeline.o multiply.o add.o base_functor.o $(CXXFLAGS)
+pipeline: main.o multiply.o add.o pipeline.o stage.o
+	$(CXX) -o pipeline main.o pipeline.o multiply.o add.o stage.o $(CXXFLAGS)
 
 multiply.o: multiply.cpp
 	$(CXX) -c multiply.cpp $(CXXFLAGS)
@@ -16,8 +16,8 @@ add.o: add.cpp
 main.o: main.cpp
 	$(CXX) -c main.cpp $(CXXFLAGS)
 
-base_functor.o: base_functor.cpp
-	$(CXX) -c base_functor.cpp $(CXXFLAGS)
+stage.o: stage.cpp
+	$(CXX) -c stage.cpp $(CXXFLAGS)
 
 run: pipeline
 	./pipeline

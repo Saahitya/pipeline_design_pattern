@@ -1,10 +1,10 @@
-#include "base_functor.h"
+#include "stage.h"
 #include <chrono>
 #include <thread>
 
-bool BaseFunctor::stopFunctions;
+bool Stage::stopFunctions;
 
-void BaseFunctor::operator()()
+void Stage::operator()()
 {
     int ele = 0;
     bool isEleMinus1 = false;
@@ -29,12 +29,12 @@ void BaseFunctor::operator()()
 //     return ele;
 // }
 
-void BaseFunctor::setInQueue(std::queue<int>& q)
+void Stage::setInQueue(std::queue<int>& q)
 {
     in_ = &q;
 }
 
-void BaseFunctor::setOutQueue(std::queue<int>& q)
+void Stage::setOutQueue(std::queue<int>& q)
 {
     out_ = &q;
 }

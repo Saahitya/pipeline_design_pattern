@@ -1,11 +1,11 @@
 #ifndef MULTIPLY_H
 #define MULTIPLY_H
 
-#include "base_functor.h"
+#include "stage.h"
 #include <iostream>
 #include <queue>
 
-class Multiply : public BaseFunctor {
+class Multiply : public Stage {
 public:
     Multiply(std::queue<int>* in, std::queue<int>* out);
     Multiply();
