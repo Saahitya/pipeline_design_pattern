@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 
-bool Stage::stopFunctions;
+bool Stage::stopFunctions = true;
 
 void Stage::operator()()
 {

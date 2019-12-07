@@ -16,7 +16,7 @@ std::pair<std::queue<int>*, std::queue<int>*> Pipeline::setupPipeline()
 {
     queues_.resize(stages_.size() + 1);
     int index = 0;
-    Stage::stopFunctions = false;
+    Stage::stopFunctions = true;
     std::cout << std::boolalpha;
     for (auto it = begin(stages_); it != end(stages_); ++it) {
         (*it)->setInQueue(queues_[index]);
@@ -29,6 +29,7 @@ std::pair<std::queue<int>*, std::queue<int>*> Pipeline::setupPipeline()
 
 void Pipeline::startPipeline()
 {
+    Stage::stopFunctions = false;
     for (auto it = begin(stages_); it != end(stages_); ++it) {
         std::thread th([&](Stage* bf) { bf->operator()(); }, *it);
         // std::thread th(**it);
@@ -49,4 +50,15 @@ void Pipeline::stopPipeline()
 bool Pipeline::isPipelineFlushed()
 {
     return std::all_of(begin(queues_), end(queues_) - 1, [](auto q) { return !q.size(); });
+}
+
+//use flushPipeline only when the pipeline is stopped
+bool Pipeline::flushPipeline()
+{
+    std::cout << Stage::stopFunctions << " hey yeah \n";
+    if (Stage::stopFunctions) {
+        std::for_each(begin(queues_), end(queues_) - 1, [](auto& q) { while(!q.empty()){q.pop();}; });
+        return true;
+    }
+    return false;
 }

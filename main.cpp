@@ -20,8 +20,8 @@ int main()
     for (int x = 0; x < 1000; ++x) {
         i->push(x);
     }
-
     p->startPipeline();
+    p->flushPipeline();
     auto done = p->isPipelineFlushed();
     // std::this_thread::sleep_for(std::chrono::milliseconds(10200));
     p->stopPipeline();

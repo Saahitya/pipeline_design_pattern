@@ -19,6 +19,7 @@ public:
     void startPipeline();
     void stopPipeline();
     bool isPipelineFlushed();
+    bool flushPipeline();
 };
 
 #endif
