@@ -14,8 +14,9 @@ private:
     std::queue<T>* out_;
     void setInQueue(std::queue<T>& q);
     void setOutQueue(std::queue<T>& q);
-    virtual T stage_operation(T) = 0;
-    virtual void operator()();
+    virtual T stage_op(T) = 0;
+//    virtual void operator()();
+    virtual void stage_op_handler();
 
 //public: refactored all attributes and methods to private
 };

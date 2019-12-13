@@ -5,8 +5,28 @@
 template<class T>
 bool Stage<T>::stopFunctions = true;
 
+//template<class T>
+//void Stage<T>::operator()()
+//{
+//    T ele = 0;
+//    bool isEleMinus1 = false;
+//    while (!stopFunctions) {
+//        // std::this_thread::sleep_for(std::chrono::milliseconds(10));
+//        while (in_->size() == 0)
+//            ;
+//        std::lock_guard<std::mutex> guard(queue_mutex);
+//        isEleMinus1 = (in_->front() == -1) ? true : false;
+//        ele = isEleMinus1 ? -1 : this->stage_op(in_->front());
+//        in_->pop();
+//        if (ele != -1)
+//            out_->push(ele);
+//        else
+//            out_->push(-1);
+//    }
+//}
+
 template<class T>
-void Stage<T>::operator()()
+void Stage<T>::stage_op_handler()
 {
     T ele = 0;
     bool isEleMinus1 = false;
@@ -16,7 +36,7 @@ void Stage<T>::operator()()
             ;
         std::lock_guard<std::mutex> guard(queue_mutex);
         isEleMinus1 = (in_->front() == -1) ? true : false;
-        ele = isEleMinus1 ? -1 : this->stage_operation(in_->front());
+        ele = isEleMinus1 ? -1 : this->stage_op(in_->front());
         in_->pop();
         if (ele != -1)
             out_->push(ele);
@@ -24,6 +44,7 @@ void Stage<T>::operator()()
             out_->push(-1);
     }
 }
+
 
 // int BaseFunctor::stage_operation(int ele)
 // {

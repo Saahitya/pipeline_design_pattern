@@ -34,7 +34,7 @@ void Pipeline<T>::startPipeline()
 {
     Stage<T>::stopFunctions = false;
     for (auto it = begin(stages_); it != end(stages_); ++it) {
-        std::thread th([&](Stage<T>* bf) { bf->operator()(); }, *it);
+        std::thread th([&](Stage<T>* bf) { bf->stage_op_handler(); }, *it);
         // std::thread th(**it);
         th.detach();
         std::this_thread::sleep_for(std::chrono::milliseconds(1));

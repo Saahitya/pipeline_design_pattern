@@ -4,7 +4,7 @@ Add::Add()
 {
 }
 
-float Add::stage_operation(float ele)
+float Add::stage_op(float ele)
 {
     //     this_thread::sleep_for(chrono::milliseconds(1000));
     std::cout << "In add " << ele << std::endl;

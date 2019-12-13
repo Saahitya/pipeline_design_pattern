@@ -7,7 +7,7 @@
 class Add : public Stage<float> {
 public:
     Add();
-    virtual float stage_operation(float);
+    virtual float stage_op(float);
 };
 
 #endif
