@@ -7,15 +7,16 @@
 #include <thread>
 #include <vector>
 
+template <class T>
 class Pipeline {
 private:
-    std::vector<Stage<int>*> stages_;
-    std::vector<std::queue<int>> queues_;
+    std::vector<Stage<T>*> stages_;
+    std::vector<std::queue<T>> queues_;
 
 public:
     Pipeline();
-    void addStage(Stage<int>* bf);
-    std::pair<std::queue<int>*, std::queue<int>*> setupPipeline();
+    void addStage(Stage<T>* bf);
+    std::pair<std::queue<T>*, std::queue<T>*> setupPipeline();
     void startPipeline();
     void stopPipeline();
     bool isPipelineFlushed();

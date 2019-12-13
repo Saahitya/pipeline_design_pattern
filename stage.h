@@ -9,13 +9,13 @@ class Stage {
 private:
     std::mutex queue_mutex;
     static bool stopFunctions;
-    friend class Pipeline;
+    template<class U> friend class Pipeline;
 
 public:
     std::queue<T>* in_;
     std::queue<T>* out_;
     virtual void operator()();
-    virtual int stage_operation(int) = 0;
+    virtual T stage_operation(T) = 0;
     void setInQueue(std::queue<T>& q);
     void setOutQueue(std::queue<T>& q);
 };

@@ -7,9 +7,9 @@ using namespace std;
 
 int main()
 {
-    Pipeline* p = new Pipeline();
+    Pipeline<int>* p = new Pipeline<int>();
     p->addStage(new Add());
-    p->addStage(new Multiply());
+//    p->addStage(new Multiply());
 
     auto io = p->setupPipeline();
     auto i = io.first;
