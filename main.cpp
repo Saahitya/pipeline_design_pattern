@@ -9,7 +9,7 @@ int main()
 {
     Pipeline<float>* p = new Pipeline<float>();
     p->addStage(new Add());
-//    p->addStage(new Multiply());
+    //    p->addStage(new Multiply());
 
     auto io = p->setupPipeline();
     auto i = io.first;
@@ -18,7 +18,7 @@ int main()
     // i->push(10); i->push(20); i->push(30); i->push(40); i->push(-1);
 
     for (float x = 0; x < 1000; ++x) {
-        i->push(x/10.0);
+        i->push(x / 10.0);
     }
     p->startPipeline();
     p->flushPipeline();

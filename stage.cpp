@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 
-template<class T>
+template <class T>
 bool Stage<T>::stopFunctions = true;
 
 //template<class T>
@@ -25,7 +25,7 @@ bool Stage<T>::stopFunctions = true;
 //    }
 //}
 
-template<class T>
+template <class T>
 void Stage<T>::stage_op_handler()
 {
     T ele = 0;
@@ -45,18 +45,17 @@ void Stage<T>::stage_op_handler()
     }
 }
 
-
 // int BaseFunctor::stage_operation(int ele)
 // {
 //     std::cout << "Why the heck is this calling the base class function" << std::endl;
 //     return ele;
 // }
-template<class T>
+template <class T>
 void Stage<T>::setInQueue(std::queue<T>& q)
 {
     in_ = &q;
 }
-template<class T>
+template <class T>
 void Stage<T>::setOutQueue(std::queue<T>& q)
 {
     out_ = &q;
