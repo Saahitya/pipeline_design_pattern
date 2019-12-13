@@ -21,3 +21,6 @@ stage.o: stage.cpp
 
 run: pipeline
 	./pipeline
+
+stats: 
+	cloc --exclude-lang=XML --git .
