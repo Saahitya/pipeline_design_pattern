@@ -24,3 +24,6 @@ run: pipeline
 
 stats: 
 	cloc --exclude-lang=XML --git .
+
+oldschool:
+	clang++-8 -pthread -o OldSchool/main OldSchool/basic_pipeline.cpp OldSchool/main.cpp OldSchool/stage.cpp

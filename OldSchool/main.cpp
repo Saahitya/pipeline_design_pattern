@@ -30,10 +30,10 @@ int main() {
     ver_string(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__);
 #endif
 
-  // RunBasicPipeline();
+  RunBasicPipeline();
   //runs only in c++14
-  // RunBasicFunctionalPipeline();
-  // RunBasicFunctionalPipeline();
+  RunBasicFunctionalPipeline();
+  RunBasicFunctionalPipeline();
   RunAdvFunctionalPipeline();
 }
 
@@ -59,6 +59,6 @@ void RunAdvFunctionalPipeline() {
   vector<int> input {1, 2, 3};
   // const pipe_closure<add_one_f> add_one;
   const pipe_closure<normalize_f> normalize_input;
-  auto output = input | normalize_input | ;
+  auto output = input | normalize_input;
   for_each(begin(output), end(output), [](int ele){cout << ele << "\t";});
 }
