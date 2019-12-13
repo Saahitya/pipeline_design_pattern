@@ -4,10 +4,10 @@
 #include "stage.h"
 #include <queue>
 
-class Add : public Stage<int> {
+class Add : public Stage<float> {
 public:
     Add();
-    virtual int stage_operation(int);
+    virtual float stage_operation(float);
 };
 
 #endif

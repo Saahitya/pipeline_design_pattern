@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    Pipeline<int>* p = new Pipeline<int>();
+    Pipeline<float>* p = new Pipeline<float>();
     p->addStage(new Add());
 //    p->addStage(new Multiply());
 
@@ -17,8 +17,8 @@ int main()
 
     // i->push(10); i->push(20); i->push(30); i->push(40); i->push(-1);
 
-    for (int x = 0; x < 1000; ++x) {
-        i->push(x);
+    for (float x = 0; x < 1000; ++x) {
+        i->push(x/10.0);
     }
     p->startPipeline();
     p->flushPipeline();

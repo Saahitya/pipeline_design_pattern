@@ -8,7 +8,7 @@ bool Stage<T>::stopFunctions = true;
 template<class T>
 void Stage<T>::operator()()
 {
-    int ele = 0;
+    T ele = 0;
     bool isEleMinus1 = false;
     while (!stopFunctions) {
         // std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -41,3 +41,4 @@ void Stage<T>::setOutQueue(std::queue<T>& q)
     out_ = &q;
 }
 template class Stage<int>;
+template class Stage<float>;
