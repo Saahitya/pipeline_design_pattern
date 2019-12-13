@@ -1,3 +1,4 @@
 *.o
 pipeline
 .vscode/
+.idea/
