@@ -4,7 +4,7 @@
 #include <iostream>
 #include <mutex>
 #include <queue>
-
+template <class T>
 class Stage {
 private:
     std::mutex queue_mutex;
@@ -12,12 +12,12 @@ private:
     friend class Pipeline;
 
 public:
-    std::queue<int>* in_;
-    std::queue<int>* out_;
+    std::queue<T>* in_;
+    std::queue<T>* out_;
     virtual void operator()();
     virtual int stage_operation(int) = 0;
-    void setInQueue(std::queue<int>& q);
-    void setOutQueue(std::queue<int>& q);
+    void setInQueue(std::queue<T>& q);
+    void setOutQueue(std::queue<T>& q);
 };
 
 #endif

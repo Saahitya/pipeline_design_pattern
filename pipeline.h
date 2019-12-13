@@ -9,12 +9,12 @@
 
 class Pipeline {
 private:
-    std::vector<Stage*> stages_;
+    std::vector<Stage<int>*> stages_;
     std::vector<std::queue<int>> queues_;
 
 public:
     Pipeline();
-    void addStage(Stage* bf);
+    void addStage(Stage<int>* bf);
     std::pair<std::queue<int>*, std::queue<int>*> setupPipeline();
     void startPipeline();
     void stopPipeline();

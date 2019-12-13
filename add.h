@@ -4,7 +4,7 @@
 #include "stage.h"
 #include <queue>
 
-class Add : public Stage {
+class Add : public Stage<int> {
 public:
     Add();
     virtual int stage_operation(int);

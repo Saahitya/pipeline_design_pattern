@@ -2,9 +2,11 @@
 #include <chrono>
 #include <thread>
 
-bool Stage::stopFunctions = true;
+template<class T>
+bool Stage<T>::stopFunctions = true;
 
-void Stage::operator()()
+template<class T>
+void Stage<T>::operator()()
 {
     int ele = 0;
     bool isEleMinus1 = false;
@@ -28,13 +30,14 @@ void Stage::operator()()
 //     std::cout << "Why the heck is this calling the base class function" << std::endl;
 //     return ele;
 // }
-
-void Stage::setInQueue(std::queue<int>& q)
+template<class T>
+void Stage<T>::setInQueue(std::queue<T>& q)
 {
     in_ = &q;
 }
-
-void Stage::setOutQueue(std::queue<int>& q)
+template<class T>
+void Stage<T>::setOutQueue(std::queue<T>& q)
 {
     out_ = &q;
 }
+template class Stage<int>;

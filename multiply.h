@@ -5,7 +5,7 @@
 #include <iostream>
 #include <queue>
 
-class Multiply : public Stage {
+class Multiply : public Stage<int> {
 public:
     Multiply();
     virtual int stage_operation(int);
