@@ -60,7 +60,11 @@ int main() // Main function
     // first argument: input source
     // second argument: output source
     // third argument: blurring kernel size
-    blur(image,image,Size(10,10)); 
+    blur(image,image,Size(10,10));
+
+    rotate(image, image, ROTATE_90_CLOCKWISE);
+
+    cvtColor(image, image, COLOR_BGR2GRAY);
 
     // Create a window
     // first argument: name of the window
