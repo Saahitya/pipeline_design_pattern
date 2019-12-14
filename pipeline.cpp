@@ -68,5 +68,5 @@ bool Pipeline<T>::flushPipeline()
     return false;
 }
 
-//template class Pipeline<int>;
+template class Pipeline<int>;
 template class Pipeline<float>;

@@ -60,5 +60,6 @@ void Stage<T>::setOutQueue(std::queue<T>& q)
 {
     out_ = &q;
 }
+
 template class Stage<int>;
 template class Stage<float>;
