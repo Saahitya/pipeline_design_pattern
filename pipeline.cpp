@@ -72,3 +72,4 @@ bool Pipeline<T>::flushPipeline()
 template class Pipeline<int>;
 template class Pipeline<float>;
 template class Pipeline<Payload>;
+template class Pipeline<Payload*>;

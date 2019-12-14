@@ -5,10 +5,10 @@
 #include "payload.h"
 #include <queue>
 
-class OpenFile : public Stage<Payload> {
+class OpenFile : public Stage<Payload*> {
 public:
     OpenFile();
-    virtual Payload stage_op(Payload);
+    virtual Payload* stage_op(Payload*);
 };
 
 #endif

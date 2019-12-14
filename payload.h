@@ -8,8 +8,8 @@ using namespace cv;
 
 class Payload {
     public:
-    string path;
-
+    string inpath;
+    string outpath;
     Mat image;
 };
 

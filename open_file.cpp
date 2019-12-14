@@ -13,9 +13,9 @@ OpenFile::OpenFile()
 
 }
 
-Payload OpenFile::stage_op(Payload ele)
+Payload* OpenFile::stage_op(Payload *ele)
 {
-    ele.image = imread(ele.path, IMREAD_UNCHANGED);
-    std::cout << "Opening "<< ele.path << "\n";
+    ele->image = imread(ele->inpath, IMREAD_UNCHANGED);
+    std::cout << "Opening "<< ele->inpath << "\n";
     return ele;
 }

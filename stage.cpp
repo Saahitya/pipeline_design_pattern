@@ -32,6 +32,7 @@ void Stage<T>::stage_op_handler()
     T ele;
     bool isEleMinus1 = false;
     while (!stopFunctions) {
+        
         // std::this_thread::sleep_for(std::chrono::milliseconds(10));
         while (in_->size() == 0)
             ;
@@ -67,3 +68,4 @@ void Stage<T>::setOutQueue(std::queue<T>& q)
 template class Stage<int>;
 template class Stage<float>;
 template class Stage<Payload>;
+template class Stage<Payload*>;
