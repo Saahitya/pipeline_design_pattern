@@ -29,5 +29,7 @@ oldschool:
 	clang++-8 -pthread -o OldSchool/main OldSchool/basic_pipeline.cpp OldSchool/main.cpp OldSchool/stage.cpp
 
 clean:
-	rm *.o pipeline
+	rm *.o pipeline image_blur
 
+imgblr:
+	g++ $(pkg-config --cflags --libs opencv4) -std=c++11  image_blur.cpp -o image_blur
