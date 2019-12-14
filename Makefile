@@ -2,20 +2,14 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++14 -lpthread
 
 
-pipeline: main.o multiply.o add.o pipeline.o stage.o open_file.o save_file.o
-	$(CXX) -o pipeline main.o pipeline.o multiply.o add.o stage.o open_file.o save_file.o $(CXXFLAGS)
+pipeline: main.o multiply.o add.o pipeline.o stage.o
+	$(CXX) -o pipeline main.o pipeline.o multiply.o add.o stage.o $(CXXFLAGS)
 
 multiply.o: multiply.cpp
 	$(CXX) -c multiply.cpp $(CXXFLAGS)
 
 pipeline.o: pipeline.cpp
 	$(CXX) -c pipeline.cpp $(CXXFLAGS)
-
-open_file.o: open_file.cpp
-	$(CXX) $(CXXFLAGS) open_file.cpp -c
-
-save_file.o: save_file.cpp
-	$(CXX) $(CXXFLAGS) save_file.cpp -c
 
 add.o: add.cpp
 	$(CXX) -c add.cpp $(CXXFLAGS)

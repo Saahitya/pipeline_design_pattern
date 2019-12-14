@@ -1,19 +1,19 @@
 #include "add.h"
 #include "multiply.h"
-#include "open_file.h"
 #include "pipeline.h"
 #include "payload.h"
-#include "save_file.h"
 #include <iostream>
 using namespace std;
 
 void first_example();
 void second_example();
+void third_example();
 
 int main()
 {
-    first_example();
-    second_example();
+    // first_example();
+    // second_example();
+    third_example();
 }
 
 
@@ -49,14 +49,11 @@ void first_example()
 }
 
 
-//example with user defined datatype used as a data wrapper
+//example with no stages set up and data sent comes out.
 void second_example()
 {
     Pipeline<Payload*> *p = new Pipeline<Payload*>();
 
-    p->addStage(new OpenFile());
-
-    p->addStage(new SaveFile());
 
     auto io = p->setupPipeline();
     auto i = io.first;
@@ -83,4 +80,34 @@ void second_example()
     std::cout << std::endl;
     // std::cout << done << std::endl;
 
+}
+
+void third_example()
+{
+    Pipeline<int> *p = new Pipeline<int>();
+
+    p->addStageWithCount(new Multiply<int>(3), 1);
+
+    p->addStageWithCount(new Add<int>(3), 1);
+
+    auto io = p->setupPipeline();
+    auto i = io.first;
+    auto o = io.second;
+
+    i->push(1);
+
+    i->push(2);
+
+    p->startNonLinearPipeline();
+    // p->flushPipeline();
+    // auto done = p->isPipelineFlushed();
+    // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    p->stopPipeline();
+
+    while (o->size()) {
+        std::cout << o->front() << "\t";
+        o->pop();
+    }
+    std::cout << std::endl;
+    // std::cout << done << std::endl;
 }

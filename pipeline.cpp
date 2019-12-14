@@ -13,6 +13,14 @@ template <class T>
 void Pipeline<T>::addStage(Stage<T>* bf)
 {
     stages_.push_back(bf);
+    stage_instance_counts_.push_back(1);
+}
+
+template <class T>
+void Pipeline<T>::addStageWithCount(Stage<T>* bf, int count)
+{
+    stages_.push_back(bf);
+    stage_instance_counts_.push_back(count);
 }
 
 template <class T>
@@ -44,6 +52,22 @@ void Pipeline<T>::startPipeline()
         // (**it)();
     }
 }
+
+template <class T>
+void Pipeline<T>::startNonLinearPipeline()
+{
+    Stage<T>::stopFunctions = false;
+    for (auto it = begin(stages_); it != end(stages_); ++it) {
+        for(int i = 1; i <= stage_instance_counts_[it-begin(stages_)]; ++i) {
+            std::thread th([&](Stage<T>* bf) { bf->stage_op_handler(); }, *it);
+            // std::thread th(**it);
+            th.detach();
+            // std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        }
+        // (**it)();
+    }
+}
+
 
 template <class T>
 void Pipeline<T>::stopPipeline()
