@@ -39,7 +39,7 @@ void Pipeline<T>::startPipeline()
         std::thread th([&](Stage<T>* bf) { bf->stage_op_handler(); }, *it);
         // std::thread th(**it);
         th.detach();
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
         // (**it)();
     }
@@ -62,7 +62,6 @@ bool Pipeline<T>::isPipelineFlushed()
 template <class T>
 bool Pipeline<T>::flushPipeline()
 {
-    std::cout << Stage<T>::stopFunctions << " hey yeah \n";
     if (Stage<T>::stopFunctions) {
         std::for_each(begin(queues_), end(queues_) - 1, [](std::queue<T>& q) { while(!q.empty()){q.pop();}; });
         return true;
@@ -70,6 +69,7 @@ bool Pipeline<T>::flushPipeline()
     return false;
 }
 
+//needed to prevent linker errors
 template class Pipeline<int>;
 template class Pipeline<float>;
 template class Pipeline<Payload>;

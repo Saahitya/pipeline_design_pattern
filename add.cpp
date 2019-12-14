@@ -1,12 +1,16 @@
 #include "add.h"
-
-Add::Add()
+template <class T>
+Add<T>::Add()
 {
 }
 
-float Add::stage_op(float ele)
+template<class T>
+T Add<T>::stage_op(T ele)
 {
     //     this_thread::sleep_for(chrono::milliseconds(1000));
     std::cout << "In add " << ele << std::endl;
-    return ele + 2.2;
+    return ele + 2;
 }
+
+//needed to prevent linker errors
+template class Add<int>;

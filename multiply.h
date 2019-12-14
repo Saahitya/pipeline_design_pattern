@@ -8,6 +8,6 @@
 class Multiply : public Stage<int> {
 public:
     Multiply();
-    virtual int stage_operation(int);
+    virtual int stage_op(int);
 };
 #endif

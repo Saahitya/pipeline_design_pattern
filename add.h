@@ -4,10 +4,11 @@
 #include "stage.h"
 #include <queue>
 
-class Add : public Stage<float> {
+template <class T>
+class Add : public Stage<T> {
 public:
     Add();
-    virtual float stage_op(float);
+    virtual T stage_op(T);
 };
 
 #endif
