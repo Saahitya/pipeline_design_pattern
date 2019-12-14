@@ -16,13 +16,15 @@ int main()
     second_example();
 }
 
+
+//basic example of simple pipeline with basic operations and fundamental datatypes done with stages being templatized. 
 void first_example()
 {
     Pipeline<int> *p = new Pipeline<int>();
 
-    p->addStage(new Multiply());
+    p->addStage(new Multiply<int>(3));
 
-    p->addStage(new Add<int>());
+    p->addStage(new Add<int>(3));
 
     auto io = p->setupPipeline();
     auto i = io.first;
@@ -46,6 +48,8 @@ void first_example()
     // std::cout << done << std::endl;
 }
 
+
+//example with user defined datatype used as a data wrapper
 void second_example()
 {
     Pipeline<Payload*> *p = new Pipeline<Payload*>();

@@ -1,11 +1,16 @@
 #include "multiply.h"
 
-Multiply::Multiply()
+template <class T>
+Multiply<T>::Multiply(T num): num_(num)
 {
 }
 
-int Multiply::stage_op(int ele)
+template <class T>
+T Multiply<T>::stage_op(T ele)
 {
     std::cout << "In multiply " << ele << std::endl;
-    return ele * 2;
+    return ele * num_;
 }
+
+//needed to prevent linker issues
+template class Multiply<int>;

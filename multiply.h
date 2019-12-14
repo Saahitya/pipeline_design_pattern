@@ -5,9 +5,13 @@
 #include <iostream>
 #include <queue>
 
-class Multiply : public Stage<int> {
+template <class T>
+class Multiply : public Stage<T> {
 public:
-    Multiply();
-    virtual int stage_op(int);
+    Multiply(T num);
+    virtual T stage_op(T);
+
+private:
+    T num_;
 };
 #endif
