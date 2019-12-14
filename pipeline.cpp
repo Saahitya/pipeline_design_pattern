@@ -30,6 +30,7 @@ std::pair<std::queue<T>*, std::queue<T>*> Pipeline<T>::setupPipeline()
 
     return make_pair(&queues_[0], &queues_[queues_.size() - 1]);
 }
+
 template <class T>
 void Pipeline<T>::startPipeline()
 {

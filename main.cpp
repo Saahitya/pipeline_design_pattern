@@ -10,8 +10,7 @@ using namespace std;
 int main()
 {
     Pipeline<Payload*> *p = new Pipeline<Payload*>();
-    // p->addStage(new Add());
-    // p->addStage(new Multiply());
+
     p->addStage(new OpenFile());
 
     p->addStage(new SaveFile());
@@ -20,18 +19,12 @@ int main()
     auto i = io.first;
     auto o = io.second;
 
-    // payload 1
     Payload *pay1 = new Payload();
-
-    pay1->inpath = "big.jpeg";
-    pay1->outpath = "./output/big_trans.bmp";
+    pay1->num = 2;
     i->push(pay1);
 
-    // payload 2
     Payload *pay2 = new Payload();
-
-    pay2->inpath = "big.jpeg";
-    pay2->outpath = "./output/big_trans.jpeg";
+    pay2->num = 3;
     i->push(pay2);
 
     p->startPipeline();
@@ -40,10 +33,10 @@ int main()
     // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
     p->stopPipeline();
 
-    // while (o->size()) {
-    //     std::cout << o->front() << "\t";
-    //     o->pop();
-    // }
-    // std::cout << std::endl;
+    while (o->size()) {
+        std::cout << o->front()->num << "\t";
+        o->pop();
+    }
+    std::cout << std::endl;
     // std::cout << done << std::endl;
 }
