@@ -7,12 +7,12 @@ using namespace std;
 using namespace cv;
 
 class Payload {
+    public:
     string path;
 
     Mat image;
 
-    public:
-    Payload();
+    // Payload();
 };
 
 #endif

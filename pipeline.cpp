@@ -1,4 +1,5 @@
 #include "pipeline.h"
+#include "payload.h"
 #include <algorithm>
 #include <functional>
 #include <iostream>
@@ -53,7 +54,7 @@ void Pipeline<T>::stopPipeline()
 template <class T>
 bool Pipeline<T>::isPipelineFlushed()
 {
-    return std::all_of(begin(queues_), end(queues_) - 1, [](auto q) { return !q.size(); });
+    return std::all_of(begin(queues_), end(queues_) - 1, [](std::queue<T>& q) { return !q.size(); });
 }
 
 //use flushPipeline only when the pipeline is stopped
@@ -62,7 +63,7 @@ bool Pipeline<T>::flushPipeline()
 {
     std::cout << Stage<T>::stopFunctions << " hey yeah \n";
     if (Stage<T>::stopFunctions) {
-        std::for_each(begin(queues_), end(queues_) - 1, [](auto& q) { while(!q.empty()){q.pop();}; });
+        std::for_each(begin(queues_), end(queues_) - 1, [](std::queue<T>& q) { while(!q.empty()){q.pop();}; });
         return true;
     }
     return false;
@@ -70,3 +71,4 @@ bool Pipeline<T>::flushPipeline()
 
 template class Pipeline<int>;
 template class Pipeline<float>;
+template class Pipeline<Payload>;
