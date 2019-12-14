@@ -1,5 +1,6 @@
 #include "open_file.h"
 #include "payload.h"
+#include <iostream>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -12,9 +13,9 @@ OpenFile::OpenFile()
 
 }
 
-Payload OpenFile::stage_op(Payload& ele)
+Payload OpenFile::stage_op(Payload ele)
 {
-    ele.image = imread("big.jpeg", IMREAD_UNCHANGED);
-
+    ele.image = imread(ele.path, IMREAD_UNCHANGED);
+    std::cout << "Opening "<< ele.path << "\n";
     return ele;
 }

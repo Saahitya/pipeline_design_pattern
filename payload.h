@@ -11,8 +11,6 @@ class Payload {
     string path;
 
     Mat image;
-
-    // Payload();
 };
 
 #endif

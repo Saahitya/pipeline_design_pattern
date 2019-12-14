@@ -1,5 +1,6 @@
 #include "add.h"
 #include "multiply.h"
+#include "open_file.h"
 #include "pipeline.h"
 #include "payload.h"
 #include <iostream>
@@ -10,21 +11,23 @@ int main()
     Pipeline<Payload>* p = new Pipeline<Payload>();
     // p->addStage(new Add());
     // p->addStage(new Multiply());
+    p->addStage(new OpenFile());
 
-    // auto io = p->setupPipeline();
-    // auto i = io.first;
-    // auto o = io.second;
+    auto io = p->setupPipeline();
+    auto i = io.first;
+    auto o = io.second;
 
-    // // i->push(10); i->push(20); i->push(30); i->push(40); i->push(-1);
+    Payload *pay1 = new Payload();
 
-    // for (float x = 0; x < 1000; ++x) {
-    //     i->push(x / 10.0);
-    // }
-    // p->startPipeline();
+    pay1->path = "big.jpeg";
+
+    i->push(*pay1);
+
+    p->startPipeline();
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
     // // std::this_thread::sleep_for(std::chrono::milliseconds(10200));
-    // p->stopPipeline();
+    p->stopPipeline();
 
     // while (o->size()) {
     //     std::cout << o->front() << "\t";
