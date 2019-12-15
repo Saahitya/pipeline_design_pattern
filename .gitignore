@@ -2,3 +2,4 @@
 pipeline
 .vscode/
 .idea/
+output/*

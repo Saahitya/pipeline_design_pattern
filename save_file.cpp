@@ -15,7 +15,9 @@ SaveFile::SaveFile()
 
 Payload* SaveFile::stage_op(Payload *ele)
 {
-    blur(ele->image, ele->image,Size(10,10));
+    std::cout<<"SOmething1\n";
+    // blur(ele->image, ele->image,Size(10,10));
+    std::cout<<"SOmething2\n";
     imwrite(ele->outpath, ele->image);
     // namedWindow( "bat", WINDOW_AUTOSIZE ); 
 
