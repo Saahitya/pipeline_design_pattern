@@ -86,10 +86,12 @@ void third_example()
 {
     Pipeline<int> *p = new Pipeline<int>();
 
-    p->addStageWithCount(new Multiply<int>(3), 1);
+    // p->addStageWithCount(new Multiply<int>(3), 1);
 
-    p->addStageWithCount(new Add<int>(3), 1);
+    // p->addStageWithCount(new Add<int>(3), 1);
 
+    p->addStage(new Multiply<int>(3));
+    p->addStage(new Add<int>(3));
     auto io = p->setupNonLinearPipeline();
     auto i = io.first;
     auto o = io.second;
@@ -101,14 +103,20 @@ void third_example()
     p->startNonLinearPipeline();
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
-    // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
     p->stopPipeline();
 
-    while (o->size()) {
+    // while (!o->empty()) {
+        int count = 2;
+        while(count) {
         int num;
-        o->wait_and_pop(num);
-        std::cout << num << "\t";
-    }
-    std::cout << std::endl;
+        bool ispop = o->try_and_pop(num);
+        if(ispop) {
+        std::cout << num << "\t"; --count;
+        }
+        }
+    // }
+
+
     // std::cout << done << std::endl;
 }

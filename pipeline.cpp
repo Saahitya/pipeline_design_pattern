@@ -52,7 +52,7 @@ std::pair<shared_queue<T>*, shared_queue<T>*> Pipeline<T>::setupNonLinearPipelin
         ++index;
     }
 
-    return make_pair(&shared_queues_[0], &shared_queues_[queues_.size() - 1]);
+    return make_pair(&shared_queues_[0], &shared_queues_[shared_queues_.size() - 1]);
 }
 
 
@@ -75,12 +75,12 @@ void Pipeline<T>::startNonLinearPipeline()
 {
     Stage<T>::stopFunctions = false;
     for (auto it = begin(stages_); it != end(stages_); ++it) {
-        for(int i = 1; i <= stage_instance_counts_[it-begin(stages_)]; ++i) {
+        // for(int i = 1; i <= stage_instance_counts_[it-begin(stages_)]; ++i) {
             std::thread th([&](Stage<T>* bf) { bf->non_linear_stage_op_handler(); }, *it);
             // std::thread th(**it);
             th.detach();
             // std::this_thread::sleep_for(std::chrono::milliseconds(1));
-        }
+        // }
         // (**it)();
     }
 

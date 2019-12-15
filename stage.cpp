@@ -48,10 +48,13 @@ void Stage<T>::non_linear_stage_op_handler()
     T ele;
     while (!stopFunctions) {         
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        std::lock_guard<std::mutex> guard(queue_mutex);
-        // s_in_->wait_and_pop(ele);
+        // std::lock_guard<std::mutex> guard(queue_mutex);
+        bool ispopped = s_in_->try_and_pop(ele);
+        if(!ispopped)
+            continue;
+        std::cout << ispopped << std::endl;
         ele = this->stage_op(ele);
-        out_->push(ele);
+        s_out_->push(ele);
     }
 }
 
