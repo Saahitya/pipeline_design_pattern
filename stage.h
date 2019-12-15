@@ -1,6 +1,6 @@
 #ifndef STAGE_H
 #define STAGE_H
-
+#include "shared_queue.h"
 #include <iostream>
 #include <mutex>
 #include <queue>
@@ -11,6 +11,8 @@ private:
     static bool stopFunctions;
     template <class U>
     friend class Pipeline;
+    shared_queue<T>* s_in_;
+    shared_queue<T>* s_out_;
     std::queue<T>* in_;
     std::queue<T>* out_;
     void setInQueue(std::queue<T>& q);

@@ -21,7 +21,7 @@ int main()
 
     
 
-    auto io = p->setupPipeline();
+    auto io = p->setupNonLinearPipeline();
     auto i = io.first;
     auto o = io.second;
 
@@ -46,11 +46,12 @@ int main()
     pay3->outpath = "./output/178663_trans.bmp";
     i->push(pay3);
 
-    p->startPipeline();
+    p->startNonLinearPipeline();
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
     // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-    p->stopPipeline();
+    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    // p->stopPipeline();
 
     // while (o->size()) {
     //     std::cout << o->front() << "\t";
