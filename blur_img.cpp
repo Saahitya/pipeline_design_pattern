@@ -16,7 +16,7 @@ BlurImg::BlurImg()
 Payload* BlurImg::stage_op(Payload *ele)
 {
     cout<< "Blur:"<<ele->inpath<<"\n";
-    blur(ele->image, ele->image,Size(10,10));
+    blur(ele->image, ele->image,Size(50,50));
 
     return ele;
 }

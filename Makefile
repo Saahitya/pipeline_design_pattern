@@ -3,8 +3,8 @@ opencvlibs = $(shell pkg-config --cflags --libs opencv4)
 CXXFLAGS = -Wall -Wextra -std=c++11 -lpthread $(opencvlibs)
 
 
-pipeline: main.o multiply.o add.o pipeline.o stage.o open_file.o save_file.o blur_img.o
-	$(CXX) -o pipeline main.o pipeline.o multiply.o add.o stage.o open_file.o save_file.o blur_img.o $(CXXFLAGS)
+pipeline: main.o multiply.o add.o pipeline.o stage.o open_file.o save_file.o blur_img.o rotate_img.o
+	$(CXX) -o pipeline main.o pipeline.o multiply.o add.o stage.o open_file.o save_file.o blur_img.o rotate_img.o $(CXXFLAGS)
 
 multiply.o: multiply.cpp
 	$(CXX) -c multiply.cpp $(CXXFLAGS)
@@ -20,6 +20,9 @@ save_file.o: save_file.cpp
 
 blur_img.o: blur_img.cpp
 	$(CXX) $(CXXFLAGS) blur_img.cpp -c
+
+rotate_img.o: rotate_img.cpp
+	$(CXX) $(CXXFLAGS) rotate_img.cpp -c
 
 add.o: add.cpp
 	$(CXX) -c add.cpp $(CXXFLAGS)

@@ -5,6 +5,7 @@
 #include "payload.h"
 #include "save_file.h"
 #include "blur_img.h"
+#include "rotate_img.h"
 #include <iostream>
 using namespace std;
 
@@ -16,6 +17,8 @@ int main()
     p->addStage(new OpenFile());
 
     p->addStage(new BlurImg());
+
+    p->addStage(new RotateImg());
 
     p->addStage(new SaveFile());
 
@@ -37,7 +40,7 @@ int main()
 
     pay2->inpath = "./images/orangutan_1600x1000_279157.jpg";
     pay2->outpath = "./output/orangutan_1600x1000_279157_trans.bmp";
-    i->push(pay2);
+    // i->push(pay2);
 
     // payload 3
     Payload *pay3 = new Payload();
@@ -45,6 +48,7 @@ int main()
     pay3->inpath = "./images/178663.jpg";
     pay3->outpath = "./output/178663_trans.bmp";
     i->push(pay3);
+    i->push(pay2);
 
     p->startPipeline();
     // p->flushPipeline();
