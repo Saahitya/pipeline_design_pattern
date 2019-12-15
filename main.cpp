@@ -90,7 +90,7 @@ void third_example()
 
     p->addStageWithCount(new Add<int>(3), 1);
 
-    auto io = p->setupPipeline();
+    auto io = p->setupNonLinearPipeline();
     auto i = io.first;
     auto o = io.second;
 
@@ -105,8 +105,9 @@ void third_example()
     p->stopPipeline();
 
     while (o->size()) {
-        std::cout << o->front() << "\t";
-        o->pop();
+        int num;
+        o->wait_and_pop(num);
+        std::cout << num << "\t";
     }
     std::cout << std::endl;
     // std::cout << done << std::endl;

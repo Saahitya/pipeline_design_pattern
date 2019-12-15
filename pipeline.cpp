@@ -40,6 +40,23 @@ std::pair<std::queue<T>*, std::queue<T>*> Pipeline<T>::setupPipeline()
 }
 
 template <class T>
+std::pair<shared_queue<T>*, shared_queue<T>*> Pipeline<T>::setupNonLinearPipeline()
+{
+    shared_queues_.resize(stages_.size() + 1);
+    int index = 0;
+    Stage<T>::stopFunctions = true;
+    std::cout << std::boolalpha;
+    for (auto it = begin(stages_); it != end(stages_); ++it) {
+        (*it)->setInQueue(shared_queues_[index]);
+        (*it)->setOutQueue(shared_queues_[index + 1]);
+        ++index;
+    }
+
+    return make_pair(&shared_queues_[0], &shared_queues_[queues_.size() - 1]);
+}
+
+
+template <class T>
 void Pipeline<T>::startPipeline()
 {
     Stage<T>::stopFunctions = false;
@@ -59,13 +76,14 @@ void Pipeline<T>::startNonLinearPipeline()
     Stage<T>::stopFunctions = false;
     for (auto it = begin(stages_); it != end(stages_); ++it) {
         for(int i = 1; i <= stage_instance_counts_[it-begin(stages_)]; ++i) {
-            std::thread th([&](Stage<T>* bf) { bf->stage_op_handler(); }, *it);
+            std::thread th([&](Stage<T>* bf) { bf->non_linear_stage_op_handler(); }, *it);
             // std::thread th(**it);
             th.detach();
             // std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
         // (**it)();
     }
+
 }
 
 
