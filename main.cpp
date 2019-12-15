@@ -57,6 +57,7 @@ int main()
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
     // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     p->stopPipeline();
 
     // while (o->size()) {
