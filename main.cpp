@@ -27,7 +27,7 @@ int main()
 
     
 
-    auto io = p->setupPipeline();
+    auto io = p->setupNonLinearPipeline();
     auto i = io.first;
     auto o = io.second;
 
@@ -63,13 +63,10 @@ int main()
 
     
 
-    p->startPipeline();
+    p->startNonLinearPipeline();
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
-    // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    p->stopPipeline();
-
+     std::this_thread::sleep_for(std::chrono::milliseconds(10000));
     // while (o->size()) {
     //     std::cout << o->front() << "\t";
     //     o->pop();
