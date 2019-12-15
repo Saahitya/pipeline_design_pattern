@@ -53,6 +53,16 @@ int main()
     i->push(pay3);
     i->push(pay2);
 
+    // payload 4
+
+    Payload *pay4 = new Payload();
+
+    pay4->inpath = "./images/pexels-photo-414612.jpeg";
+    pay4->outpath = "./output/pexels-photo-414612_trans.bmp";
+    i->push(pay4);
+
+    
+
     p->startPipeline();
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
