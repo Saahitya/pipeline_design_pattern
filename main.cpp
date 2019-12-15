@@ -6,6 +6,7 @@
 #include "save_file.h"
 #include "blur_img.h"
 #include "rotate_img.h"
+#include "gray_img.h"
 #include <iostream>
 using namespace std;
 
@@ -19,6 +20,8 @@ int main()
     p->addStage(new BlurImg());
 
     p->addStage(new RotateImg());
+
+    p->addStage(new GrayImg());
 
     p->addStage(new SaveFile());
 
