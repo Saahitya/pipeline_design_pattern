@@ -46,7 +46,7 @@ oldschool:
 	clang++-8 -pthread -o OldSchool/main OldSchool/basic_pipeline.cpp OldSchool/main.cpp OldSchool/stage.cpp
 
 clean:
-	rm *.o pipeline image_blur ./output/*
+	rm *.o pipeline image_blur ./output/* ./tee/*
 
 imgblr:
 	# g++ -I/usr/local/Cellar/opencv/4.1.2/include/opencv4/opencv -I/usr/local/Cellar/opencv/4.1.2/include/opencv4 -L/usr/local/Cellar/opencv/4.1.2/lib -lopencv_gapi -lopencv_stitching -lopencv_aruco -lopencv_bgsegm -lopencv_bioinspired -lopencv_ccalib -lopencv_dnn_objdetect -lopencv_dnn_superres -lopencv_dpm -lopencv_highgui -lopencv_face -lopencv_freetype -lopencv_fuzzy -lopencv_hfs -lopencv_img_hash -lopencv_line_descriptor -lopencv_quality -lopencv_reg -lopencv_rgbd -lopencv_saliency -lopencv_sfm -lopencv_stereo -lopencv_structured_light -lopencv_phase_unwrapping -lopencv_superres -lopencv_optflow -lopencv_surface_matching -lopencv_tracking -lopencv_datasets -lopencv_text -lopencv_dnn -lopencv_plot -lopencv_videostab -lopencv_video -lopencv_videoio -lopencv_xfeatures2d -lopencv_shape -lopencv_ml -lopencv_ximgproc -lopencv_xobjdetect -lopencv_objdetect -lopencv_calib3d -lopencv_imgcodecs -lopencv_features2d -lopencv_flann -lopencv_xphoto -lopencv_photo -lopencv_imgproc -lopencv_core -std=c++11  image_blur.cpp -o image_blur
