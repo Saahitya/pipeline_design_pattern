@@ -13,7 +13,16 @@
 
 using namespace std;
 
+void first_example();
+void second_example();
+
 int main()
+{
+    first_example();
+    // second_example();
+}
+
+void first_example()
 {
     Pipeline<Payload*> *p = new Pipeline<Payload*>();
     // p->addStage(new Add());
@@ -56,4 +65,10 @@ int main()
     // }
     // std::cout << std::endl;
     // std::cout << done << std::endl;
+
 }
+
+// void second_example()
+// {
+//     Pipeline<int*> *p = new Pipeline<>();
+// }
