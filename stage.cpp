@@ -35,7 +35,7 @@ void Stage<T>::stage_op_handler()
         // std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         while (in_->size() == 0)
             ;
-        std::lock_guard<std::mutex> guard(queue_mutex);
+        // std::lock_guard<std::mutex> guard(queue_mutex);
         ele = this->stage_op(in_->front());
         in_->pop();
         out_->push(ele);

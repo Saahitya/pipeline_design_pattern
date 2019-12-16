@@ -92,6 +92,7 @@ void third_example()
 
     p->addStage(new Multiply<int>(3));
     p->addStage(new Add<int>(3));
+    // p->addStage(new Add<int>(3));
     auto io = p->setupNonLinearPipeline();
     auto i = io.first;
     auto o = io.second;
@@ -99,24 +100,26 @@ void third_example()
     i->push(1);
 
     i->push(2);
-
+    std::cout << "popinters are " << i << " " << o << std::endl;
     p->startNonLinearPipeline();
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
-    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-    p->stopPipeline();
-
-    // while (!o->empty()) {
-        int count = 2;
-        while(count) {
+    // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    // p->stopPipeline();
+    while(o->size() != 2);
+    int count = 2;
+    std::cout << std::endl;
+    while (!o->empty()) {
+        
+        // while(count) {
         int num;
-        bool ispop = o->try_and_pop(num);
-        if(ispop) {
+        o->wait_and_pop(num);
+        // if(ispop) {
         std::cout << num << "\t"; --count;
-        }
-        }
-    // }
+        // }
+        // }
+    }
 
 
-    // std::cout << done << std::endl;
+    std::cout <<  std::endl;
 }

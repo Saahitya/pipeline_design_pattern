@@ -29,7 +29,8 @@ std::pair<std::queue<T>*, std::queue<T>*> Pipeline<T>::setupPipeline()
     queues_.resize(stages_.size() + 1);
     int index = 0;
     Stage<T>::stopFunctions = true;
-    std::cout << std::boolalpha;
+    std::cout << std::boolalpha ;
+    // std::cout << stages_.size() << " hey"  << std::endl;
     for (auto it = begin(stages_); it != end(stages_); ++it) {
         (*it)->setInQueue(queues_[index]);
         (*it)->setOutQueue(queues_[index + 1]);
@@ -43,6 +44,12 @@ template <class T>
 std::pair<shared_queue<T>*, shared_queue<T>*> Pipeline<T>::setupNonLinearPipeline()
 {
     shared_queues_.resize(stages_.size() + 1);
+        std::cout << stages_.size() << " hey"  << std::endl;
+    for(auto it = begin(shared_queues_); it != end(shared_queues_); ++it) {
+        auto jt = &(*it);
+        std::cout << jt << "\t";
+    }
+    std::cout << std::endl;
     int index = 0;
     Stage<T>::stopFunctions = true;
     std::cout << std::boolalpha;
@@ -52,7 +59,7 @@ std::pair<shared_queue<T>*, shared_queue<T>*> Pipeline<T>::setupNonLinearPipelin
         ++index;
     }
 
-    return make_pair(&shared_queues_[0], &shared_queues_[shared_queues_.size() - 1]);
+    return make_pair(&shared_queues_[0], &shared_queues_[shared_queues_.size()-1]);
 }
 
 
@@ -94,22 +101,40 @@ void Pipeline<T>::stopPipeline()
         ;
     Stage<T>::stopFunctions = true;
 }
+// template <class T>
+// bool Pipeline<T>::isPipelineFlushed()
+// {
+//     return std::all_of(begin(queues_), end(queues_) - 1, [](std::queue<T>& q) { return !q.size(); });
+// }
+
 template <class T>
 bool Pipeline<T>::isPipelineFlushed()
 {
-    return std::all_of(begin(queues_), end(queues_) - 1, [](std::queue<T>& q) { return !q.size(); });
+    return std::all_of(begin(shared_queues_), end(shared_queues_) - 1, [](shared_queue<T>& q) { return !q.size(); });
 }
 
+
 //use flushPipeline only when the pipeline is stopped
+// template <class T>
+// bool Pipeline<T>::flushPipeline()
+// {
+//     if (Stage<T>::stopFunctions) {
+//         std::for_each(begin(queues_), end(queues_) - 1, [](std::queue<T>& q) { while(!q.empty()){q.pop();}; });
+//         return true;
+//     }
+//     return false;
+// }
+
 template <class T>
 bool Pipeline<T>::flushPipeline()
 {
     if (Stage<T>::stopFunctions) {
-        std::for_each(begin(queues_), end(queues_) - 1, [](std::queue<T>& q) { while(!q.empty()){q.pop();}; });
+        std::for_each(begin(shared_queues_), end(shared_queues_) - 1, [](shared_queue<T>& q) { while(!q.empty()){T temp; q.wait_and_pop(temp);}; });
         return true;
     }
     return false;
 }
+
 
 //needed to prevent linker errors
 template class Pipeline<int>;
