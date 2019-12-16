@@ -9,6 +9,7 @@ class RotateImg : public Stage<Payload*> {
 public:
     RotateImg();
     virtual Payload* stage_op(Payload*);
+    virtual void tee(Payload *);
 };
 
 #endif

@@ -52,8 +52,9 @@ void Stage<T>::stage_op_handler()
         bool ispopped = s_in_->try_and_pop(ele);
         if(!ispopped)
             continue;
-        std::cout << ispopped << std::endl;
+        // std::cout << ispopped << std::endl;
         ele = this->stage_op(ele);
+        this->tee(ele);
         s_out_->push(ele);
     }
 }
@@ -63,6 +64,12 @@ T Stage<T>::stage_op(T ele)
 {
     // std::cout << "Why the heck is this calling the base class function" << std::endl;
     return ele;
+}
+
+template <class T>
+void Stage<T>::tee(T ele)
+{
+    // std::cout << "Why the heck is this calling the base class function" << std::endl;
 }
 
 // template <class T>

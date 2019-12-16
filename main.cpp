@@ -14,7 +14,7 @@
 using namespace std;
 
 void first_example();
-void second_example();
+// void second_example();
 
 int main()
 {
@@ -47,8 +47,10 @@ void first_example()
         Payload *p = new Payload();
 
         p->inpath = "./images/big.jpeg";
-
-        p->outpath = "./output/big_" + to_string(j) + ".jpeg";
+        p->index = to_string(j);
+        p->prefix = "./tee/big_";
+        p->suffix = ".jpeg";
+        p->outpath = "./output/big_" + p->index + p->suffix;
 
         i->push(p);
     }    

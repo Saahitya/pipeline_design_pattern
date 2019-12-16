@@ -25,4 +25,9 @@ Payload* RotateImg::stage_op(Payload *ele)
 
     return ele;
 }
-  
+
+void RotateImg::tee(Payload *ele)
+{
+    // std::cout << "this is stuff" << std::endl;
+    imwrite(ele->prefix + ele->index + "_teerotate" + ele->suffix, ele->image);
+}

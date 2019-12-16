@@ -22,6 +22,7 @@ private:
 
     virtual T stage_op(T) = 0;
     //    virtual void operator()();
+    virtual void tee(T);
     virtual void stage_op_handler();
     // virtual void non_linear_stage_op_handler();
 

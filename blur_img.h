@@ -9,6 +9,7 @@ class BlurImg : public Stage<Payload*> {
 public:
     BlurImg();
     virtual Payload* stage_op(Payload*);
+    virtual void tee(Payload*);
 };
 
 #endif

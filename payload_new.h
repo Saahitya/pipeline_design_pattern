@@ -6,14 +6,10 @@
 using namespace std;
 using namespace cv;
 
-class Payload {
-    public:
-    string inpath;
-    string outpath;
-    Mat image;
-    string index;
-    string prefix;
-    string suffix;
+class PayloadNew {
+public:
+    string file_path;
+    fstream 
 };
 
 #endif

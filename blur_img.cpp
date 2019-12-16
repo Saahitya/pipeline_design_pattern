@@ -21,4 +21,10 @@ Payload* BlurImg::stage_op(Payload *ele)
     blur(ele->image, ele->image,Size(randomNumber, randomNumber));
     return ele;
 }
+
+void BlurImg::tee(Payload *ele)
+{
+    // std::cout << "this is stuff" << std::endl;
+    imwrite(ele->prefix + ele->index + "_teeblur" + ele->suffix, ele->image);
+}
   

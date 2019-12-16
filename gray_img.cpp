@@ -23,4 +23,10 @@ Payload* GrayImg::stage_op(Payload *ele)
 
     return ele;
 }
+
+void GrayImg::tee(Payload *ele)
+{
+    // std::cout << "this is stuff" << std::endl;
+    imwrite(ele->prefix + ele->index + "_teegray" + ele->suffix, ele->image);
+}
   

@@ -9,6 +9,7 @@ class GrayImg : public Stage<Payload*> {
 public:
     GrayImg();
     virtual Payload* stage_op(Payload*);
+    virtual void tee(Payload *);
 };
 
 #endif

@@ -3,3 +3,4 @@ pipeline
 .vscode/
 .idea/
 output/*
+tee/*
