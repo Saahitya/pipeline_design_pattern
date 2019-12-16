@@ -4,6 +4,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <cstdlib>
 
 using namespace cv;
 using namespace std;
@@ -16,7 +17,11 @@ RotateImg::RotateImg()
 Payload* RotateImg::stage_op(Payload *ele)
 {
     cout<< "Rotate:"<<ele->inpath<<"\n";
-    rotate(ele->image, ele->image, ROTATE_90_CLOCKWISE);
+
+    int randomNumber = std::rand()%2;
+
+
+    rotate(ele->image, ele->image, randomNumber);
 
     return ele;
 }
