@@ -66,7 +66,9 @@ int main()
     p->startPipeline();
     // p->flushPipeline();
     // auto done = p->isPipelineFlushed();
-     std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    // p->stopPipeline();
+
     // while (o->size()) {
     //     std::cout << o->front() << "\t";
     //     o->pop();
